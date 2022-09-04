@@ -62,12 +62,6 @@ public class AuthorManager {
         return null;
     }
 
-    //TODO
-    // 1- jnjel booky delete * from book where id=id
-    // 2- jnjel authory delete * from author where id=id        bayc
-    // 3- poxel girqy  1-bdi getById enes girqy kam authory stugum dnenk ,
-    // ete tvyal idov mard chka bazayi mej tox qce kam bookNotFoundException authorNotFoundException
-    //
     public void deleteAuthorById(int id) {
         String sql = "delete from author where id =" + id;
         try {
