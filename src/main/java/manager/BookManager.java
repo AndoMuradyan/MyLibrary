@@ -14,13 +14,14 @@ public class BookManager {
 
 
     public void add(Book book) {
-        String sql = "insert into book(title,description,price,author_id) VALUES (?,?,?,?)";
+        String sql = "insert into book(title,description,price,author_id,profile_pic) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getDescription());
             ps.setDouble(3, book.getPrice());
-            ps.setInt(4,book.getAuthor().getId());
+            ps.setInt(4, book.getAuthor().getId());
+            ps.setString(5, book.getProfilePic());
 
             ps.executeUpdate();
             ResultSet resultSet = ps.getGeneratedKeys();
@@ -79,6 +80,7 @@ public class BookManager {
         book.setDescription(resultSet.getString("description"));
         book.setPrice(resultSet.getDouble("price"));
         int authorId = resultSet.getInt("author_id");
+        book.setProfilePic(resultSet.getString("profile_pic"));
         Author author = authorManager.getById(authorId);
         book.setAuthor(author);
 //

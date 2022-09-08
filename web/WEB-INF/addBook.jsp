@@ -14,7 +14,7 @@
 </head>
 <body>
 <%
-    //    List<Book> books = (List<Book>) request.getAttribute("books");
+//        List<Book> books = (List<Book>) request.getAttribute("books");
     List<Author> authors = (List<Author>) request.getAttribute("authors");
 %>
 Please input book's
@@ -23,7 +23,7 @@ Please input book's
     <input type="text" name="description" placeholder="description"><br>
     <input type="text" name="price" placeholder="price"><br>
         Profile Picture:<br>
-        <input type="file"name="profilePic"><br>
+        <input type="file" name="profilePic"><br>
     <select name="authorId"><br>
 
         <% for (Author author : authors) { %>
