@@ -20,18 +20,24 @@
 %>
 <table border="1px">
     <tr>
+        <th>image</th>
         <th>id</th>
         <th>title</th>
         <th>description</th>
         <th>price</th>
         <th>author</th>
         <th>action</th>
+    </tr>>
 
-
-            <% for (Book book : books) {
-  %>
+            <% for (Book book : books) {%>
     <tr>
-
+        <td>
+            <% if (book.getProfilePic() == null || book.getProfilePic().length() == 0) { %>
+            <img src="/image/defaultBook.png" width="100"/>
+            <%} else { %>
+            <img src="/getImage?profilePic=<%=book.getProfilePic()%>" width="100"/>
+            <% }%>
+        </td>
         <td><%=book.getId()%>
         </td>
         <td><%=book.getTitle()%>
@@ -40,7 +46,7 @@
         </td>
         <td><%=book.getPrice()%>
         </td>
-        <%--    <td><%=book.getAuthor().getId()%>--%>
+
         <td>
             <% if (book.getAuthor() != null) { %>
             <%=book.getAuthor().getName()%>
@@ -59,7 +65,7 @@
     <%
         }
     %>
-    </tr>
+
 </table>
 </body>
 </html>

@@ -13,35 +13,46 @@
 </head>
 <body>
 <%
-  List<Author> authors = (List<Author>) request.getAttribute("authors");
+    List<Author> authors = (List<Author>) request.getAttribute("authors");
 %>
 <table border="1px">
-  <tr>
-    <th>id</th>
-    <th>name</th>
-    <th>surname</th>
-    <th>email</th>
-    <th>age</th>
-    <th>action</th>
+    <tr>
+        <th>image</th>
+        <th>id</th>
+        <th>name</th>
+        <th>surname</th>
+        <th>email</th>
+        <th>age</th>
+        <th>action</th>
+    </tr>
+    <%for (Author author : authors) {%>
+    <tr>
+        <td>
+            <% if(author.getProfilePic() == null || author.getProfilePic().length() == 0) {%>
+            <img src="/image/defaultProfileImg.png" width="100"/>
+            <%} else {%>
+            <img src="/getImage?profilePic=<%=author.getProfilePic()%>" width="100"/>
+            <% } %>
+        </td>
+        <td><%=author.getId()%>
+        </td>
+        <td><%=author.getName()%>
+        </td>
+        <td><%=author.getSurname()%>
+        </td>
+        <td><%=author.getEmail()%>
+        </td>
+        <td><%=author.getAge()%>
+        </td>
+        <td>
+            <a href="/authors/delete?authorId=<%=author.getId()%>">Delete</a> |
+            <a href="/authors/edit?authorId=<%=author.getId()%>">Edit</a>
+        </td>
+    </tr>
 
-  <% for (Author author : authors) {%>
 
-  <tr>
+    <% }%>
 
-    <td><%=author.getId()%>
-    <td><%=author.getName()%>
-    <td><%=author.getSurname()%>
-    <td><%=author.getEmail()%>
-    <td><%=author.getAge()%>
-    <td>
-    <a href="/authors/delete?authorId=<%=author.getId()%>">Delete</a> |
-  <a href="/authors/edit?authorId=<%=author.getId()%>">Edit</a>
-  </td>
-
-  </tr>
-  <%}
-  %>
-</tr>
 </table>
 </body>
 </html>

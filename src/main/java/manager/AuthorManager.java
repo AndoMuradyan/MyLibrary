@@ -12,13 +12,14 @@ public class AuthorManager {
 //    private  AuthorManager = new AuthorManager();
 
     public void add(Author author) {
-        String sql = "insert into author(name,surname,email,age) VALUES (?,?,?,?)";
+        String sql = "insert into author(name,surname,email,age,profile_pic) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, author.getName());
             ps.setString(2, author.getSurname());
             ps.setString(3, author.getEmail());
             ps.setInt(4, author.getAge());
+            ps.setString(5,author.getProfilePic());
 
             ps.executeUpdate();
             ResultSet resultSet = ps.getGeneratedKeys();
@@ -62,6 +63,7 @@ public class AuthorManager {
         return null;
     }
 
+
     public void deleteAuthorById(int id) {
         String sql = "delete from author where id =" + id;
         try {
@@ -79,10 +81,12 @@ public class AuthorManager {
         author.setSurname(resultSet.getString("surname"));
         author.setEmail(resultSet.getString("email"));
         author.setAge(resultSet.getInt("age"));
+        author.setProfilePic(resultSet.getString("profile_pic"));
 //        int eventId = resultSet.getInt("event_id");
 //        Event event = eventManager.getById(eventId);
 //        author.setEvent(event);
 
         return author;
     }
+
 }

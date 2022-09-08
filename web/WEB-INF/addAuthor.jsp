@@ -12,16 +12,24 @@
     <title>Add Author</title>
 </head>
 <body>
+<%--<%--%>
+<%--    List<Author> authors = (List<Author>) request.getAttribute("authors");--%>
+<%--%>--%>
 <%
-    List<Author> authors = (List<Author>) request.getAttribute("authors");
+    String msg = (String) request.getAttribute("msg");
 %>
+<% if (msg != null) {%>
+<p style="color: red"><%=msg%>
+</p>
+<%}%>
 Please input user's
-<form action="/author/add" method="post">
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="surname" placeholder="surname">
-    <input type="text" name="email" placeholder="email">
-    <input type="number" name="age" placeholder="age">
-    <br>
+<form action="/author/add" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="name"><br>
+    <input type="text" name="surname" placeholder="surname"><br>
+    <input type="text" name="email" placeholder="email"><br>
+    <input type="number" name="age" placeholder="age"><br>
+    Profile Picture:<br>
+    <input type="file"name="profilePic"><br>
 
     <input type="submit" value="Add">
 </form>

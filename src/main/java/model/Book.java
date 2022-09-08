@@ -15,6 +15,7 @@ public class Book {
     private String description;
     private double price;
     private Author author;
+    private String profilePic;
 
 
 }
